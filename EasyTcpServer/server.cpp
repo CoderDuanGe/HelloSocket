@@ -18,7 +18,7 @@ int main()
 	_sin.sin_family = AF_INET;
 	_sin.sin_port = htons(4567);//htons(×ª»»ÍøÂç×Ö½ÚÐò)
 	_sin.sin_addr.S_un.S_addr = INADDR_ANY;//inet_addr("127.0.0.1");
-	if (SOCKET_ERROR == bind(_sock, (sockaddr*)&_sin, sizeof(_sin)))
+	if (SOCKET_ERROR == bind(_sock, (sockaddr*)&_sin, sizeof(sockaddr_in)))
 	{
 		printf("errno bind...\n");
 	}
