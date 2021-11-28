@@ -47,19 +47,20 @@ int main()
 	{
 		printf("errno accept...\n");
 	}
-	printf("new server join: IP = %s \n", inet_ntoa(clientAddr.sin_addr));
+	printf("new server join: socket=%d IP = %s \n",(int)_cSock, inet_ntoa(clientAddr.sin_addr));
 
 
 	char _recvBuf[128] = {};
 	while (true)
 	{
 		//5.接受客户端的请求数据
-		int nLen=recv(_sock, _recvBuf, sizeof(_recvBuf), 0);
+		int nLen=recv(_cSock, _recvBuf, sizeof(_recvBuf), 0);
 		if (nLen <= 0)
 		{
 			printf("client quit\n");
 			break;
 		}
+		printf("access command : %s \n", _recvBuf);
 		//6.处理请求
 		if (0 == strcmp(_recvBuf, "getName"))
 		{
@@ -82,5 +83,7 @@ int main()
 	closesocket(_sock);
 	//清除windows socket环境
 	WSACleanup();
+	printf("exit,mission fish\n");
+	getchar();
 	return 0;
 }
